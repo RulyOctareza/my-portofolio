@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     final themeController = Get.find<ThemeController>();
 
     return GetMaterialApp(
-      title: 'Portfolio',
+      title: 'Reza Dev Portofolio',
       debugShowCheckedModeBanner: false,
       themeMode: themeController.themeMode,
       theme: lightTheme,
