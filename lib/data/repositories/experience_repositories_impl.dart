@@ -19,7 +19,7 @@ class ExperienceRepositoryImpl implements ExperienceRepository {
           'Mathematic',
           'Injection Machine',
         ],
-        logoUrl: 'assets/images/tech_innovations.png',
+        logoUrl: '',
       ),
       Experience(
         company: 'KMI Korea Selatan',
@@ -28,7 +28,7 @@ class ExperienceRepositoryImpl implements ExperienceRepository {
         description:
             'Developed MasjidKorea, a mobile application built with Flutter and Firebase to help Muslims in South Korea find nearby mosques. Designed and implemented location-based search features, integrated real-time database for mosque information, and optimized the user interface for a seamless experience. Responsible for full-stack development, including UI/UX design, API integration, and performance optimization.',
         technologies: ['Flutter', 'Dart', 'REST API', 'BLoC', 'SQLite'],
-        logoUrl: 'assets/images/mobile_solutions.png',
+        logoUrl: '',
       ),
     ];
   }
