@@ -20,7 +20,7 @@ class Header extends StatelessWidget {
         color: Theme.of(context).appBarTheme.backgroundColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black12,
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -32,7 +32,7 @@ class Header extends StatelessWidget {
           // Logo/Title with overflow protection
           Flexible(
             child: Text(
-              'My Portfolio',
+              '< Reza Dev />',
               style: TextStyle(
                 fontSize: isMobile ? 20 : 24,
                 fontWeight: FontWeight.bold,

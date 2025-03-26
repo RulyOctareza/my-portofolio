@@ -29,25 +29,33 @@ class _SkillsSectionState extends State<SkillsSection> {
   @override
   Widget build(BuildContext context) {
     bool isMobile = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    final textColor = Theme.of(context).textTheme.titleLarge?.color;
+    final backgroundColor = Theme.of(context).scaffoldBackgroundColor;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
+      color: backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             'Skills',
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: textColor,
+            ),
           ),
           const SizedBox(height: 32),
-          isMobile ? _buildCarouselLayout() : _buildGridLayout(),
+          isMobile
+              ? _buildCarouselLayout(textColor)
+              : _buildGridLayout(textColor),
         ],
       ),
     );
   }
 
-  /// **📱 Mobile & Tablet: Tampilan Carousel**
-  Widget _buildCarouselLayout() {
+  Widget _buildCarouselLayout(Color? textColor) {
     return Column(
       children: [
         SizedBox(
@@ -61,7 +69,7 @@ class _SkillsSectionState extends State<SkillsSection> {
             itemBuilder: (context, index) {
               return Transform.scale(
                 scale: _currentPage == index ? 1.1 : 0.9,
-                child: _buildSkillItem(skills[index], 120),
+                child: _buildSkillItem(skills[index], 120, textColor),
               );
             },
           ),
@@ -83,22 +91,38 @@ class _SkillsSectionState extends State<SkillsSection> {
     );
   }
 
-  /// **🖥 Desktop: Tampilan Grid**
-  Widget _buildGridLayout() {
+  Widget _buildGridLayout(Color? textColor) {
     return Wrap(
       alignment: WrapAlignment.center,
       spacing: 24,
       runSpacing: 24,
-      children: skills.map((skill) => _buildSkillItem(skill, 100)).toList(),
+      children:
+          skills
+              .map((skill) => _buildSkillItem(skill, 100, textColor))
+              .toList(),
     );
   }
 
-  /// **🎨 Widget Skill Item**
-  Widget _buildSkillItem(Map<String, dynamic> skill, double size) {
+  Widget _buildSkillItem(
+    Map<String, dynamic> skill,
+    double size,
+    Color? textColor,
+  ) {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Theme.of(context).cardColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 6,
+                spreadRadius: 2,
+                offset: const Offset(2, 4),
+              ),
+            ],
+          ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
@@ -115,8 +139,8 @@ class _SkillsSectionState extends State<SkillsSection> {
                     child: Text(
                       skill['name'],
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.grey,
+                      style: TextStyle(
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -130,7 +154,11 @@ class _SkillsSectionState extends State<SkillsSection> {
         Text(
           skill['name'],
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: textColor,
+          ),
         ),
       ],
     );

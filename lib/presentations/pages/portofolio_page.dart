@@ -74,7 +74,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.all(isMobile ? 12.0 : 16.0),
-                  child: ExperienceSection(key: GlobalKey()),
+                  child: ExperienceSection(
+                    key: navigationController.experienceKey,
+                  ),
                 ),
               ),
 

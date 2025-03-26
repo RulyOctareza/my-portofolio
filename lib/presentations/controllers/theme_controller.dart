@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ThemeController extends GetxController {
   final _box = GetStorage();
@@ -56,10 +57,10 @@ ThemeData get lightTheme {
     ),
     cardTheme: CardTheme(color: Colors.white, shadowColor: Colors.black26),
     iconTheme: const IconThemeData(color: Colors.blue),
-    textTheme: const TextTheme(
-      titleLarge: TextStyle(color: Colors.black),
-      bodyLarge: TextStyle(color: Colors.black87),
-      bodyMedium: TextStyle(color: Colors.black87),
+    textTheme: TextTheme(
+      titleLarge: GoogleFonts.poppins(color: Colors.black),
+      bodyLarge: GoogleFonts.poppins(color: Colors.black87),
+      bodyMedium: GoogleFonts.poppins(color: Colors.black87),
     ),
     useMaterial3: true,
   );
@@ -85,10 +86,10 @@ ThemeData get darkTheme {
       shadowColor: Colors.black26,
     ),
     iconTheme: const IconThemeData(color: Colors.blue),
-    textTheme: const TextTheme(
-      titleLarge: TextStyle(color: Colors.white),
-      bodyLarge: TextStyle(color: Colors.white70),
-      bodyMedium: TextStyle(color: Colors.white70),
+    textTheme: TextTheme(
+      titleLarge: GoogleFonts.poppins(color: Colors.white),
+      bodyLarge: GoogleFonts.poppins(color: Colors.white70),
+      bodyMedium: GoogleFonts.poppins(color: Colors.white70),
     ),
     useMaterial3: true,
   );

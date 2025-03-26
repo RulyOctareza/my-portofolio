@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
@@ -10,7 +11,10 @@ class AboutSection extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
-      child: isMobile ? _buildColumnLayout(context) : _buildRowLayout(context),
+      child:
+          isMobile
+              ? _buildColumnLayout(context)
+              : _buildCenteredLayout(context),
     );
   }
 
@@ -26,14 +30,15 @@ class AboutSection extends StatelessWidget {
     );
   }
 
-  /// **Tampilan Desktop (Gambar di Samping)**
-  Widget _buildRowLayout(BuildContext context) {
-    return Row(
+  /// **Tampilan Desktop (Gambar di Atas, Teks di Bawah, Teks Centered)**
+  Widget _buildCenteredLayout(BuildContext context) {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(flex: 1, child: _buildImage()),
-        const SizedBox(width: 48),
-        Expanded(flex: 2, child: _buildTextContent(context)),
+        _buildImage(),
+        const SizedBox(height: 24),
+        _buildTextContent(context, isCentered: true),
       ],
     );
   }
@@ -41,7 +46,7 @@ class AboutSection extends StatelessWidget {
   /// **Widget untuk menampilkan gambar dengan bayangan**
   Widget _buildImage() {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 400),
+      constraints: const BoxConstraints(maxWidth: 200),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
@@ -60,40 +65,63 @@ class AboutSection extends StatelessWidget {
     );
   }
 
-  /// **Widget untuk menampilkan teks**
-  Widget _buildTextContent(BuildContext context) {
+  /// **Widget untuk menampilkan teks dengan animasi**
+  Widget _buildTextContent(BuildContext context, {bool isCentered = false}) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          isCentered ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
-        Text(
-          'About Me',
-          textAlign: TextAlign.justify,
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).textTheme.titleLarge?.color,
-          ),
+        AnimatedTextKit(
+          animatedTexts: [
+            TypewriterAnimatedText(
+              'Hello! I\'m Ruly Octareza',
+              textAlign: isCentered ? TextAlign.center : TextAlign.left,
+              textStyle: TextStyle(
+                fontSize: 36,
+                height: 1.5,
+                color: Theme.of(context).textTheme.titleLarge?.color,
+              ),
+              speed: const Duration(milliseconds: 100),
+            ),
+          ],
+          repeatForever: true,
         ),
         const SizedBox(height: 16),
-        Text(
-          textAlign: TextAlign.justify,
-          'Hello! I\'m a passionate Flutter developer with experience in building beautiful, responsive, and functional mobile applications.',
-          style: TextStyle(
-            fontSize: 18,
-            height: 1.5,
-            color: Theme.of(context).textTheme.titleLarge?.color,
+        SizedBox(
+          child: Text(
+            textAlign: TextAlign.center,
+            'Hello! I\'m a passionate Flutter developer with experience in building beautiful, responsive, and functional mobile applications.'
+            ' With a strong foundation in clean architecture and a keen eye for design, I create applications that not only look great but are also maintainable and scalable.',
+            style: TextStyle(
+              fontSize: 28,
+              height: 1.5,
+              color: Theme.of(context).textTheme.titleLarge?.color,
+            ),
           ),
         ),
-        const SizedBox(height: 16),
-        Text(
-          textAlign: TextAlign.justify,
-          'With a strong foundation in clean architecture and a keen eye for design, I create applications that not only look great but are also maintainable and scalable.',
-          style: TextStyle(
-            fontSize: 18,
-            height: 1.5,
-            color: Theme.of(context).textTheme.titleLarge?.color,
-          ),
-        ),
+        // AnimatedTextKit(
+        //   animatedTexts: [
+        //     FadeAnimatedText(
+        //       'Hello! I\'m a passionate Flutter developer with experience in building beautiful, responsive, and functional mobile applications.',
+        //       textAlign: isCentered ? TextAlign.center : TextAlign.left,
+        //       textStyle: TextStyle(
+        //         fontSize: 18,
+        //         height: 1.5,
+        //         color: Theme.of(context).textTheme.titleLarge?.color,
+        //       ),
+        //     ),
+        //     FadeAnimatedText(
+        //       'With a strong foundation in clean architecture and a keen eye for design, I create applications that not only look great but are also maintainable and scalable.',
+        //       textAlign: isCentered ? TextAlign.center : TextAlign.left,
+        //       textStyle: TextStyle(
+        //         fontSize: 18,
+        //         height: 1.5,
+        //         color: Theme.of(context).textTheme.titleLarge?.color,
+        //       ),
+        //     ),
+        //   ],
+        //   repeatForever: true,
+        // ),
         const SizedBox(height: 24),
         ElevatedButton(
           onPressed: () {},
