@@ -6,6 +6,7 @@ class SkillsSection extends StatefulWidget {
   const SkillsSection({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SkillsSectionState createState() => _SkillsSectionState();
 }
 
@@ -96,10 +97,9 @@ class _SkillsSectionState extends State<SkillsSection> {
       alignment: WrapAlignment.center,
       spacing: 24,
       runSpacing: 24,
-      children:
-          skills
-              .map((skill) => _buildSkillItem(skill, 100, textColor))
-              .toList(),
+      children: skills
+          .map((skill) => _buildSkillItem(skill, 100, textColor))
+          .toList(),
     );
   }
 
@@ -114,12 +114,12 @@ class _SkillsSectionState extends State<SkillsSection> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: Theme.of(context).cardColor,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black26,
                 blurRadius: 6,
                 spreadRadius: 2,
-                offset: const Offset(2, 4),
+                offset: Offset(2, 4),
               ),
             ],
           ),

@@ -11,10 +11,9 @@ class AboutSection extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
-      child:
-          isMobile
-              ? _buildColumnLayout(context)
-              : _buildCenteredLayout(context),
+      child: isMobile
+          ? _buildColumnLayout(context)
+          : _buildCenteredLayout(context),
     );
   }
 
@@ -49,12 +48,12 @@ class AboutSection extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 200),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black38,
             blurRadius: 12,
             spreadRadius: 4,
-            offset: const Offset(0, 6),
+            offset: Offset(0, 6),
           ),
         ],
       ),

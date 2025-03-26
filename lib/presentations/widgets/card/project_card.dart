@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:my_portofolio/domain/entites/project.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -24,7 +26,7 @@ class ProjectCard extends StatelessWidget {
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
             ),
-            child: Image.network(
+            child: Image.asset(
               project.imageUrl.startsWith('assets/')
                   ? 'https://via.placeholder.com/400x200'
                   : project.imageUrl,
@@ -59,31 +61,30 @@ class ProjectCard extends StatelessWidget {
                     height: 32,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      children:
-                          project.technologies.map((tech) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: Chip(
-                                label: Text(
-                                  tech,
-                                  style: TextStyle(
-                                    fontSize: isMobile ? 10 : 12,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                                backgroundColor: Theme.of(
-                                  context,
-                                ).primaryColor.withOpacity(0.1),
-                                padding: EdgeInsets.zero,
-                                materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                labelPadding: EdgeInsets.symmetric(
-                                  horizontal: isMobile ? 4 : 8,
-                                  vertical: 0,
-                                ),
+                      children: project.technologies.map((tech) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Chip(
+                            label: Text(
+                              tech,
+                              style: TextStyle(
+                                fontSize: isMobile ? 10 : 12,
+                                color: Theme.of(context).primaryColor,
                               ),
-                            );
-                          }).toList(),
+                            ),
+                            backgroundColor: Theme.of(
+                              context,
+                            ).primaryColor.withOpacity(0.1),
+                            padding: EdgeInsets.zero,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            labelPadding: EdgeInsets.symmetric(
+                              horizontal: isMobile ? 4 : 8,
+                              vertical: 0,
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
                   const SizedBox(height: 8),

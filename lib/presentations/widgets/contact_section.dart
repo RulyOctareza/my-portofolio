@@ -9,12 +9,12 @@ class ContactSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMobile = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
     final theme = Theme.of(context).textTheme;
-    final String whatsapp = 'https://wa.me/6281319577004';
+    const String whatsapp = 'https://wa.me/6281319577004';
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 48),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             Text(
@@ -22,13 +22,11 @@ class ContactSection extends StatelessWidget {
               'Contact Me',
               style: theme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
-
             const SizedBox(height: 32),
             ResponsiveRowColumn(
-              layout:
-                  isMobile
-                      ? ResponsiveRowColumnType.COLUMN
-                      : ResponsiveRowColumnType.ROW,
+              layout: isMobile
+                  ? ResponsiveRowColumnType.COLUMN
+                  : ResponsiveRowColumnType.ROW,
               rowCrossAxisAlignment: CrossAxisAlignment.start,
               columnCrossAxisAlignment: CrossAxisAlignment.start,
               rowSpacing: 48,

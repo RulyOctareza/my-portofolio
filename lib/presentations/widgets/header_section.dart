@@ -18,11 +18,11 @@ class Header extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).appBarTheme.backgroundColor,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 8,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -55,10 +55,9 @@ class Header extends StatelessWidget {
                   onPressed: () {
                     themeController.toggleTheme();
                   },
-                  tooltip:
-                      themeController.isDarkMode.value
-                          ? 'Switch to Light Mode'
-                          : 'Switch to Dark Mode',
+                  tooltip: themeController.isDarkMode.value
+                      ? 'Switch to Light Mode'
+                      : 'Switch to Dark Mode',
                 ),
               ),
               // Navigation menu

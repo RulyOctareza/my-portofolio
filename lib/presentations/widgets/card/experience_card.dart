@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:my_portofolio/domain/entites/experience.dart';
 
@@ -25,10 +27,9 @@ class ExperienceCard extends StatelessWidget {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).brightness == Brightness.dark
-                            ? Colors.grey.shade800
-                            : Colors.grey.shade200,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.grey.shade800
+                        : Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(
@@ -107,10 +108,9 @@ class ExperienceCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color:
-                    Theme.of(context).brightness == Brightness.dark
-                        ? Colors.grey.shade800
-                        : Colors.grey.shade200,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey.shade800
+                    : Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
@@ -134,28 +134,27 @@ class ExperienceCard extends StatelessWidget {
             Wrap(
               spacing: 6,
               runSpacing: 6,
-              children:
-                  experience.technologies.map((tech) {
-                    return Chip(
-                      label: Text(
-                        tech,
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                      backgroundColor: Theme.of(
-                        context,
-                      ).primaryColor.withOpacity(0.1),
-                      padding: EdgeInsets.zero,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      labelPadding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 0,
-                      ),
-                      visualDensity: VisualDensity.compact,
-                    );
-                  }).toList(),
+              children: experience.technologies.map((tech) {
+                return Chip(
+                  label: Text(
+                    tech,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  backgroundColor: Theme.of(
+                    context,
+                  ).primaryColor.withOpacity(0.1),
+                  padding: EdgeInsets.zero,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  labelPadding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 0,
+                  ),
+                  visualDensity: VisualDensity.compact,
+                );
+              }).toList(),
             ),
           ],
         ),
