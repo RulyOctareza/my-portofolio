@@ -27,9 +27,7 @@ class ProjectCard extends StatelessWidget {
               topRight: Radius.circular(16),
             ),
             child: Image.asset(
-              project.imageUrl.startsWith('assets/')
-                  ? 'https://via.placeholder.com/400x200'
-                  : project.imageUrl,
+              project.imageUrl,
               height: isMobile ? 140 : 180,
               width: double.infinity,
               fit: BoxFit.cover,
