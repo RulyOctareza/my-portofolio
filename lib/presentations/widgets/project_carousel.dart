@@ -151,28 +151,27 @@ class ProjectsCarousel extends StatelessWidget {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 20),
-            Wrap(
-              spacing: 8.0,
-              children: controller.projects.asMap().entries.map((entry) {
-                return Obx(() {
-                  return GestureDetector(
-                    onTap: () => controller.changeProject(entry.key),
-                    child: Container(
-                      width: 10.0,
-                      height: 10.0,
-                      margin: const EdgeInsets.symmetric(vertical: 8.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: controller.currentIndex.value == entry.key
-                            ? Theme.of(context).primaryColor
-                            : Colors.grey.shade300,
-                      ),
-                    ),
-                  );
-                });
-              }).toList(),
-            ),
+            // Wrap(
+            //   spacing: 8.0,
+            //   children: controller.projects.asMap().entries.map((entry) {
+            //     return Obx(() {
+            //       return GestureDetector(
+            //         onTap: () => controller.changeProject(entry.key),
+            //         child: Container(
+            //           width: 10.0,
+            //           height: 10.0,
+            //           margin: const EdgeInsets.symmetric(vertical: 8.0),
+            //           decoration: BoxDecoration(
+            //             shape: BoxShape.circle,
+            //             color: controller.currentIndex.value == entry.key
+            //                 ? Theme.of(context).primaryColor
+            //                 : Colors.grey.shade300,
+            //           ),
+            //         ),
+            //       );
+            //     });
+            //   }).toList(),
+            // ),
           ],
         ),
       );

@@ -8,7 +8,6 @@ import 'package:my_portofolio/presentations/pages/portofolio_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
-  // Initialize GetStorage for theme persistence
   await GetStorage.init();
 
   Get.put(NavigationController());
@@ -30,16 +29,15 @@ class MyApp extends StatelessWidget {
       themeMode: themeController.themeMode,
       theme: lightTheme,
       darkTheme: darkTheme,
-      builder:
-          (context, child) => ResponsiveBreakpoints.builder(
-            child: child!,
-            breakpoints: [
-              const Breakpoint(start: 0, end: 800, name: MOBILE),
-              // const Breakpoint(start: 451, end: 800, name: TABLET),
-              const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-              const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-            ],
-          ),
+      builder: (context, child) => ResponsiveBreakpoints.builder(
+        child: child!,
+        breakpoints: [
+          const Breakpoint(start: 0, end: 800, name: MOBILE),
+          // const Breakpoint(start: 451, end: 800, name: TABLET),
+          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+        ],
+      ),
       home: const PortfolioPage(),
     );
   }

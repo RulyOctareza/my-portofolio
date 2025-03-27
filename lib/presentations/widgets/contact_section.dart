@@ -12,7 +12,7 @@ class ContactSection extends StatelessWidget {
     const String whatsapp = 'https://wa.me/6281319577004';
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 48),
+      padding: const EdgeInsets.only(bottom: 48),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -103,7 +103,7 @@ class ContactSection extends StatelessWidget {
                       Container(
                         constraints: const BoxConstraints(maxWidth: 500),
                         child: Text(
-                          "I'm currently available for freelance work. If you have a project that you want to get started or think you need my help with something, then get in touch.",
+                          "I'm currently available for freelance work or fulltime work. If you have a project that you want to get started or think you need my help with something, then get in touch.",
                           style: theme.bodyMedium?.copyWith(height: 1.5),
                         ),
                       ),

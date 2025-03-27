@@ -88,12 +88,10 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     key: navigationController.projectsKey,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         'Projects',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontSize: 32, fontWeight: FontWeight.w900),
                       ),
                       const SizedBox(height: 24),
                       ProjectsCarousel(controller: projectController),

@@ -70,27 +70,37 @@ class AboutSection extends StatelessWidget {
       crossAxisAlignment:
           isCentered ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
-        AnimatedTextKit(
-          animatedTexts: [
-            TypewriterAnimatedText(
-              'Hello! I\'m Ruly Octareza',
-              textAlign: isCentered ? TextAlign.center : TextAlign.left,
-              textStyle: TextStyle(
-                fontSize: 36,
-                height: 1.5,
-                color: Theme.of(context).textTheme.titleLarge?.color,
-              ),
-              speed: const Duration(milliseconds: 100),
+        SizedBox(
+          child: Text(
+            textAlign: TextAlign.center,
+            'Ruly Octareza',
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w900,
+              height: 1.5,
+              color: Theme.of(context).textTheme.titleLarge?.color,
             ),
-          ],
-          repeatForever: true,
+          ),
         ),
         const SizedBox(height: 16),
         SizedBox(
           child: Text(
             textAlign: TextAlign.center,
-            'Hello! I\'m a passionate Flutter developer with experience in building beautiful, responsive, and functional mobile applications.'
-            ' With a strong foundation in clean architecture and a keen eye for design, I create applications that not only look great but are also maintainable and scalable.',
+            'Flutter Developer | Software Engineer | Cross-platform',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 28,
+              height: 1.5,
+              color: Theme.of(context).textTheme.titleLarge?.color,
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 16),
+        SizedBox(
+          child: Text(
+            textAlign: TextAlign.center,
+            'Passionate Flutter developer 🚀 with hands-on experience in building apps. Skilled in UI/UX, API integration, and Firebase. Eager to learn and contribute to impactful projects!',
             style: TextStyle(
               fontSize: 28,
               height: 1.5,
