@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
