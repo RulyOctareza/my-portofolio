@@ -10,7 +10,7 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    final isMobile = ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
     final themeController = Get.find<ThemeController>();
 
     return Container(

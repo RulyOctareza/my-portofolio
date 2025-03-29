@@ -29,7 +29,7 @@ class _SkillsSectionState extends State<SkillsSection> {
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    bool isMobile = ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
     final textColor = Theme.of(context).textTheme.titleLarge?.color;
     final backgroundColor = Theme.of(context).scaffoldBackgroundColor;
 
@@ -47,7 +47,7 @@ class _SkillsSectionState extends State<SkillsSection> {
               color: textColor,
             ),
           ),
-          const SizedBox(height: 32),
+          // const SizedBox(height: 32),
           isMobile
               ? _buildCarouselLayout(textColor)
               : _buildGridLayout(textColor),
@@ -95,8 +95,8 @@ class _SkillsSectionState extends State<SkillsSection> {
   Widget _buildGridLayout(Color? textColor) {
     return Wrap(
       alignment: WrapAlignment.center,
-      spacing: 24,
-      runSpacing: 24,
+      spacing: 12,
+      runSpacing: 12,
       children: skills
           .map((skill) => _buildSkillItem(skill, 100, textColor))
           .toList(),
@@ -129,7 +129,7 @@ class _SkillsSectionState extends State<SkillsSection> {
               skill['image'],
               height: size,
               width: size,
-              fit: BoxFit.contain,
+              fit: BoxFit.fill,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   height: size,

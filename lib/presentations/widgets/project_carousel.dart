@@ -15,7 +15,7 @@ class ProjectsCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    final isMobile = ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
     final carouselHeight = isMobile ? 500.0 : 700.0;
 
     return Obx(() {

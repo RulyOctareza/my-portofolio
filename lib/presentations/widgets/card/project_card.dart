@@ -12,7 +12,7 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    final isMobile = ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
 
     return Card(
       elevation: 4,

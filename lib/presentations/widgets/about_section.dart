@@ -66,8 +66,6 @@ class AboutSection extends StatelessWidget {
   /// **Widget untuk menampilkan teks dengan animasi**
   Widget _buildTextContent(BuildContext context, {bool isCentered = false}) {
     return Column(
-      crossAxisAlignment:
-          isCentered ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         SizedBox(
           child: Text(
