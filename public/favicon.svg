@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="16" fill="#111614"/>
+  <text x="30.5" y="41.5" text-anchor="middle" font-family="'Bricolage Grotesque','Arial Black','Helvetica Neue',Arial,sans-serif" font-size="26" font-weight="800" letter-spacing="-1.5" fill="#f6f4ee">RO</text>
+  <circle cx="51" cy="51" r="7.5" fill="#e2972a" stroke="#111614" stroke-width="3"/>
+</svg>
