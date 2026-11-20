@@ -48,7 +48,8 @@ export const ui = {
       en: "I'm Ruly Octareza, a Flutter and web developer in East Java, Indonesia. My projects run from Blora to South Korea, and you can open every one of them below.",
     },
     ctaPrimary: { id: 'Chat lewat WhatsApp', en: 'Message me on WhatsApp' },
-    ctaSecondary: { id: 'Lihat 6 proyek live', en: 'See 6 live projects' },
+    // {n} is filled from the project list at build time, so the count cannot drift.
+    ctaSecondary: { id: 'Lihat {n} proyek live', en: 'See {n} live projects' },
     waText: {
       id: 'Halo Ruly, saya lihat portofoliomu dan ingin diskusi proyek.',
       en: 'Hi Ruly, I saw your portfolio and would like to discuss a project.',
@@ -59,7 +60,7 @@ export const ui = {
     },
   },
   work: {
-    title: { id: 'Proyek yang sudah live', en: 'Projects that are live' },
+    title: { id: 'Proyek yang sudah live', en: 'Live projects' },
     sub: { id: 'Klik alamatnya untuk membuka versi aslinya.', en: 'Click an address to open the real thing.' },
     othersTitle: { id: 'Proyek lain dan eksperimen', en: 'Other projects and experiments' },
     othersSub: { id: 'Sebagian besar kodenya terbuka di GitHub.', en: 'Most of the code is open on GitHub.' },
@@ -73,7 +74,7 @@ export const ui = {
     title: { id: 'Yang bisa saya kerjakan untukmu', en: 'What I can build for you' },
     sub: { id: 'Setiap layanan punya contoh nyata yang bisa kamu buka.', en: 'Each service has a real example you can open.' },
     example: { id: 'Contoh', en: 'Example' },
-    cta: { id: 'Tanya lewat WhatsApp', en: 'Ask on WhatsApp' },
+    via: { id: 'lewat WhatsApp', en: 'on WhatsApp' },
   },
   about: {
     title: { id: 'Dari lantai produksi ke kode.', en: 'From the factory floor to code.' },
@@ -335,6 +336,8 @@ export type Service = {
   title: L;
   desc: L;
   examples: { label: string; href: string }[];
+  /** Visible button text, unique per service so each link names its own topic. */
+  cta: L;
   waText: L;
 };
 
@@ -347,6 +350,7 @@ export const services: Service[] = [
       en: 'Program pages and a sign-up flow for applicants, plus an LMS where they study with a Google account.',
     },
     examples: [{ label: 'Transia Career', href: '#work-transia' }],
+    cta: { id: 'Tanya soal website LPK', en: 'Ask about a training-centre site' },
     waText: { id: 'Halo Ruly, saya ingin diskusi website/LMS untuk lembaga kami.', en: 'Hi Ruly, I would like to discuss a website or LMS for our training centre.' },
   },
   {
@@ -361,6 +365,7 @@ export const services: Service[] = [
       { label: 'IKA UT LLN', href: '#work-ikaut' },
       { label: 'Masjid Korea', href: '#work-masjidkorea' },
     ],
+    cta: { id: 'Tanya soal aplikasi masjid', en: 'Ask about a mosque app' },
     waText: { id: 'Halo Ruly, saya pengurus masjid/komunitas dan ingin diskusi aplikasi.', en: 'Hi Ruly, I help run a mosque or community and would like to discuss an app.' },
   },
   {
@@ -374,6 +379,7 @@ export const services: Service[] = [
       { label: 'UMKM POS', href: '#work-umkmpos' },
       { label: 'AutoCare OBD', href: '#other-autocare' },
     ],
+    cta: { id: 'Tanya soal aplikasi Flutter', en: 'Ask about a Flutter app' },
     waText: { id: 'Halo Ruly, saya ingin diskusi pembuatan aplikasi mobile.', en: 'Hi Ruly, I would like to discuss building a mobile app.' },
   },
   {
@@ -387,6 +393,7 @@ export const services: Service[] = [
       { label: 'Absensi Sekolah', href: '#other-absensi' },
       { label: 'AI Food Recognizer', href: '#other-food' },
     ],
+    cta: { id: 'Tanya soal otomasi', en: 'Ask about automation' },
     waText: { id: 'Halo Ruly, saya ingin diskusi otomasi atau fitur AI.', en: 'Hi Ruly, I would like to discuss automation or an AI feature.' },
   },
 ];

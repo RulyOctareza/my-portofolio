@@ -1,20 +1,24 @@
 ---
 import '@fontsource-variable/plus-jakarta-sans';
 import '../styles/global.css';
+// Same file the font CSS points to: preloading it lets text render in the final font sooner.
+import fontLatin from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
 import { GITHUB, type Lang } from '../data/site';
 
 interface Props {
   lang: Lang;
   title: string;
   description: string;
+  /** Pages that should not be indexed or linked as alternates (the 404 page). */
+  noindex?: boolean;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, noindex = false } = Astro.props;
 const site = Astro.site ?? new URL('https://rulyoctareza.vercel.app');
 const canonical = new URL(lang === 'id' ? '/' : '/en/', site).href;
 const altId = new URL('/', site).href;
 const altEn = new URL('/en/', site).href;
-const ogImage = new URL('/og.png', site).href;
+const ogImage = new URL(lang === 'id' ? '/og-id.jpg' : '/og-en.jpg', site).href;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -35,10 +39,19 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Ruly Octareza" />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="id" href={altId} />
-    <link rel="alternate" hreflang="en" href={altEn} />
-    <link rel="alternate" hreflang="x-default" href={altId} />
+    <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
+    {noindex && <meta name="robots" content="noindex" />}
+    {
+      !noindex && (
+        <>
+          <link rel="canonical" href={canonical} />
+          <link rel="alternate" hreflang="id" href={altId} />
+          <link rel="alternate" hreflang="en" href={altEn} />
+          <link rel="alternate" hreflang="x-default" href={altId} />
+        </>
+      )
+    }
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
@@ -49,6 +62,7 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} />
@@ -60,7 +74,13 @@ const jsonLd = {
       (function () {
         try {
           var t = localStorage.getItem('theme');
-          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+          if (t === 'light' || t === 'dark') {
+            document.documentElement.setAttribute('data-theme', t);
+            var c = t === 'dark' ? '#111413' : '#f7f5f0';
+            document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
+              m.setAttribute('content', c);
+            });
+          }
         } catch (e) {}
       })();
     </script>

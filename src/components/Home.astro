@@ -34,6 +34,7 @@ const other: Lang = lang === 'id' ? 'en' : 'id';
 const otherHref = other === 'en' ? '/en/' : '/';
 const home = lang === 'id' ? '/' : '/en/';
 const waMain = wa(t(ui.hero.waText));
+const liveCount = projects.length + 1; // featured + list, so the hero count follows the data
 const year = new Date().getFullYear();
 const ext = { target: '_blank', rel: 'noopener' };
 ---
@@ -52,8 +53,8 @@ const ext = { target: '_blank', rel: 'noopener' };
       </ul>
     </nav>
     <div class="header__controls">
-      <a class="ctrl ctrl--text" href={otherHref} hreflang={other} lang={other} aria-label={t(ui.nav.langLabel)}>
-        {other.toUpperCase()}
+      <a class="ctrl ctrl--text" href={otherHref} hreflang={other} lang={other}>
+        {other.toUpperCase()}<span class="sr-only"> ({t(ui.nav.langLabel)})</span>
       </a>
       <button class="ctrl" type="button" data-theme-toggle aria-pressed="false" aria-label={t(ui.nav.theme)}>
         <Icon name="moon" class="i-moon" />
@@ -85,7 +86,7 @@ const ext = { target: '_blank', rel: 'noopener' };
             <Icon name="whatsapp" />
             {t(ui.hero.ctaPrimary)}
           </a>
-          <a class="text-link" href="#work">{t(ui.hero.ctaSecondary)}</a>
+          <a class="text-link" href="#work">{t(ui.hero.ctaSecondary).replace('{n}', String(liveCount))}</a>
         </div>
       </div>
       <div class="hero__devices">
@@ -103,7 +104,12 @@ const ext = { target: '_blank', rel: 'noopener' };
       </header>
 
       <article class="feature" id={`work-${featured.id}`} aria-labelledby={`title-${featured.id}`}>
-        <Shot class="feature__shot" src={featured.shot} alt={t(featured.shotAlt)} sizes="(max-width: 900px) 100vw, 660px" />
+        <Shot
+          class="feature__shot"
+          src={featured.shot}
+          alt={t(featured.shotAlt)}
+          sizes="(max-width: 899px) calc(100vw - 48px), (max-width: 1240px) 55vw, 620px"
+        />
         <div class="project">
           <p class="project__meta">{t(featured.kind)} · {t(featured.when)}</p>
           <h3 id={`title-${featured.id}`}>{featured.title}</h3>
@@ -116,6 +122,7 @@ const ext = { target: '_blank', rel: 'noopener' };
                 <li>
                   <a href={l.href} {...ext}>
                     {t(l.label)}
+                    <span class="sr-only"> ({featured.title})</span>
                   </a>
                 </li>
               ))
@@ -145,12 +152,18 @@ const ext = { target: '_blank', rel: 'noopener' };
                     <li>
                       <a href={l.href} {...ext}>
                         {t(l.label)}
+                        <span class="sr-only"> ({p.title})</span>
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
-              <Shot class="row__shot" src={p.shot} alt={t(p.shotAlt)} sizes="(max-width: 760px) 100vw, 600px" />
+              <Shot
+                class="row__shot"
+                src={p.shot}
+                alt={t(p.shotAlt)}
+                sizes="(max-width: 759px) calc(100vw - 40px), (max-width: 1240px) 50vw, 580px"
+              />
             </li>
           ))
         }
@@ -173,6 +186,7 @@ const ext = { target: '_blank', rel: 'noopener' };
                     o.links.map((l) => (
                       <a href={l.href} {...ext}>
                         {t(l.label)}
+                        <span class="sr-only"> ({o.title})</span>
                       </a>
                     ))
                   )}
@@ -209,7 +223,8 @@ const ext = { target: '_blank', rel: 'noopener' };
                 </p>
                 <a class="btn btn--line" href={wa(t(s.waText))} {...ext}>
                   <Icon name="whatsapp" size={18} />
-                  {t(ui.services.cta)}
+                  {t(s.cta)}
+                  <span class="sr-only"> {t(ui.services.via)}</span>
                 </a>
               </div>
             </li>
@@ -227,8 +242,8 @@ const ext = { target: '_blank', rel: 'noopener' };
           src={photo}
           alt={t(ui.about.photoAlt)}
           formats={['avif', 'webp']}
-          widths={[320, 480, 720]}
-          sizes="(max-width: 900px) 300px, 380px"
+          widths={[280, 420, 560, 760]}
+          sizes="(max-width: 899px) 280px, 380px"
         />
       </div>
       <div class="about__body">
@@ -311,7 +326,15 @@ const ext = { target: '_blank', rel: 'noopener' };
   const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
   const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const isDark = () => (root.getAttribute('data-theme') ?? (darkQuery.matches ? 'dark' : 'light')) === 'dark';
-  const syncToggle = () => toggle?.setAttribute('aria-pressed', String(isDark()));
+  const syncToggle = () => {
+    toggle?.setAttribute('aria-pressed', String(isDark()));
+    // Keep the mobile browser bar in step with a manually chosen theme.
+    if (root.hasAttribute('data-theme')) {
+      document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
+        m.content = isDark() ? '#111413' : '#f7f5f0';
+      });
+    }
+  };
   syncToggle();
   darkQuery.addEventListener('change', syncToggle);
   toggle?.addEventListener('click', () => {

@@ -22,6 +22,7 @@ Dial: ENERGY 2 / RHYTHM 2 / MOTION 1
 | Teks | `#15191A` | `#ECE9E2` | Kontras tinggi untuk bacaan panjang |
 | Teks sekunder | `#48504D`, `#5B6360` | `#B3B8B3`, `#959C97` | Hirarki tanpa gagal kontras |
 | Aksen | `#0A6649` | `#4CC58F` / `#5FD39F` | Satu-satunya aksen: aksi utama, hover link, focus ring |
+| Pita kontak | `#15191A` | `#173026` | Permukaan aksi. Di mode gelap diberi hijau pinus supaya tetap terpisah dari latar `#111413` |
 
 Hijau dipilih karena dekat dengan dunia klien (masjid, pendidikan) dan terbaca tenang. Tidak ada warna kedua.
 
@@ -37,6 +38,9 @@ Kontras (rumus WCAG 2.x, dihitung, bukan ditebak):
 | Teks sekunder `#959C97` di latar gelap | 6.60 |
 | Teks `#06150E` di tombol `#4CC58F` | 8.64 |
 | Border kontrol `#6B726D` di latar gelap | 3.75 |
+| Teks `#ECE9E2` di pita kontak gelap `#173026` | 11.65 |
+| Teks sekunder `#B3B8B3` di pita kontak gelap | 7.01 |
+| Border tombol `#77807A` di pita kontak gelap | 3.46 |
 
 ## Tipografi
 
@@ -75,6 +79,13 @@ Ditaruh di titik konten mulai rusak, bukan daftar ukuran ponsel:
 - Di bawah 760px: baris proyek jadi satu kolom, gambar di atas.
 - Proyek lain: 3 kolom mulai 1024px, 2 kolom di tengah, 1 kolom di bawah 640px.
 - Target sentuh minimal 44 x 44px.
+
+## Link dan aksesibilitas
+
+- Link yang teksnya pendek dan berulang ("Kode", "Main") membawa nama proyek dalam teks khusus pembaca layar, supaya daftar link tetap bisa dibedakan.
+- Tombol layanan punya teks sendiri-sendiri ("Tanya soal website LPK"), bukan satu label yang diulang.
+- Tombol bahasa: teks yang terlihat ("EN") selalu jadi awal nama yang dibaca pembaca layar.
+- Halaman 404 memakai gaya yang sama dan memberi jalan kembali ke beranda, proyek, dan versi English.
 
 ## Aset
 

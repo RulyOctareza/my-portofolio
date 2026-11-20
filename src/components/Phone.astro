@@ -20,8 +20,8 @@ const { src, alt, caption, priority = false } = Astro.props;
       src={src}
       alt={alt}
       formats={['avif', 'webp']}
-      widths={[260, 400, 520]}
-      sizes="(max-width: 640px) 42vw, 230px"
+      widths={[200, 300, 420, 520]}
+      sizes="(max-width: 899px) 38vw, 214px"
       loading="eager"
       fetchpriority={priority ? 'high' : 'auto'}
     />
