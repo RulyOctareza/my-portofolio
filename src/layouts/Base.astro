@@ -1,7 +1,5 @@
 ---
-import '@fontsource-variable/bricolage-grotesque';
 import '@fontsource-variable/plus-jakarta-sans';
-import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import { GITHUB, type Lang } from '../data/site';
 
@@ -23,9 +21,8 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Ruly Octareza',
   url: altId,
-  jobTitle: 'Mobile & AI Developer',
+  jobTitle: 'Flutter and web developer',
   address: { '@type': 'PostalAddress', addressRegion: 'Jawa Timur', addressCountry: 'ID' },
-  knowsAbout: ['Flutter', 'Mobile apps', 'Next.js', 'Astro', 'AI automation'],
   sameAs: [GITHUB],
 };
 ---
@@ -44,8 +41,8 @@ const jsonLd = {
     <link rel="alternate" hreflang="x-default" href={altId} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#f6f4ee" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0f0e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111413" media="(prefers-color-scheme: dark)" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Ruly Octareza" />
     <meta property="og:title" content={title} />
@@ -61,10 +58,9 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
     <script is:inline>
       (function () {
-        var d = document.documentElement;
         try {
           var t = localStorage.getItem('theme');
-          if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
         } catch (e) {}
       })();
     </script>

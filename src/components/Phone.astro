@@ -5,24 +5,26 @@ import type { ImageMetadata } from 'astro';
 interface Props {
   src: ImageMetadata;
   alt: string;
-  class?: string;
-  eager?: boolean;
+  caption: string;
+  /** Largest above-the-fold image: never lazy, fetched first (R-40). */
+  priority?: boolean;
 }
 
-const { src, alt, class: cls, eager = false } = Astro.props;
+const { src, alt, caption, priority = false } = Astro.props;
+// Both hero phones sit above the fold, so neither is lazy; only one gets high priority.
 ---
 
-<div class:list={['phone', cls]}>
-  <div class="phone__screen">
+<figure class="device">
+  <div class="device__frame">
     <Picture
       src={src}
       alt={alt}
       formats={['avif', 'webp']}
-      widths={[280, 420, 560]}
-      sizes="(max-width: 900px) 38vw, 250px"
-      loading={eager ? 'eager' : 'lazy'}
-      fetchpriority={eager ? 'high' : 'auto'}
+      widths={[260, 400, 520]}
+      sizes="(max-width: 640px) 42vw, 230px"
+      loading="eager"
+      fetchpriority={priority ? 'high' : 'auto'}
     />
   </div>
-  <span class="phone__island" aria-hidden="true"></span>
-</div>
+  <figcaption>{caption}</figcaption>
+</figure>
